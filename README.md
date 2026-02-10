@@ -1,16 +1,22 @@
-# React + Vite
+# bluhumi.
+### Dr.-Ing. // Stratege // Mensch
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> „Dem Chaos ein Lächeln schenken. Chirurgische Präzision trifft auf das Wunder der Lebendigkeit.“
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Die Vision
+Ich schneide den **Bullshit** weg, um Raum für das Wesentliche zu schaffen. In einer Welt voller dysfunktionaler Beschäftigung und bürokratischem Rauschen ist funktionale Ästhetik kein Luxus, sondern eine Notwendigkeit. 
 
-## React Compiler
+Es geht nicht nur darum, Systeme effizienter zu machen – es geht darum, den Geist zu befreien, damit wir das Leben wieder spüren können.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Kernprinzipien der Exnovation
+* **Resonanz statt Rauschen:** Nur was wirklich schwingt, darf bleiben.
+* **Klarheit durch Weglassen:** Schönheit ist funktionale Effizienz.
+* **Das Spiel wagen:** In der Ungewissheit lächeln und den Mut finden, authentisch zu sein.
 
-## Expanding the ESLint configuration
+## Das Projekt
+Dieses Repository ist die digitale Heimat meines Manifests. Ein Experiment in **React**, **Tailwind v4** und **Framer Motion**, um Philosophie haptisch und erlebbar zu machen.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+*„Vielleicht ist der Sinn des Lebens ja herauszufinden, ab wann aus traurig glücklich wird. Vielleicht sogar zu erleben.“*
