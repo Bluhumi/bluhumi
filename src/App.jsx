@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 
 import ExnovationSection from './components/ExnovationSection'; // Importiere die neue Komponente
+import PhilosophySection from './components/PhilosophySection';
 
 // Interaktive Komponente für den "Bullshit-Filter"
 const BullshitFilter = ({ bad, good }) => {
@@ -54,17 +55,37 @@ const App = () => {
           
           {/* Logo: Jetzt lowercase */}
           <div className="flex flex-col group cursor-default">
-            <span className="text-2xl font-black tracking-tighter text-white transition-colors duration-500 group-hover:text-blue-500 lowercase">
+            <span className="text-3xl font-black tracking-tighter text-white transition-colors duration-500 group-hover:text-blue-500 lowercase">
               bluhumi<span className="text-blue-500 group-hover:text-white">.</span>
             </span>
             
             {/* Die Titel - Jetzt permanent im Header */}
-            <div className="hidden sm:flex items-center gap-2 mt-1 opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-y-1 group-hover:translate-y-0">
-              <span className="text-[7px] uppercase tracking-[0.3em] text-zinc-500 font-bold">Executive Producer</span>
-              <span className="w-1 h-1 rounded-full bg-zinc-800" />
-              <span className="text-[7px] uppercase tracking-[0.3em] text-zinc-500 font-bold">Architect</span>
-              <span className="w-1 h-1 rounded-full bg-blue-500/50" />
-              <span className="text-[7px] uppercase tracking-[0.3em] text-blue-400 font-bold">Exnovator®</span>
+            {/* Subline mit Rollen – Jetzt permanent sichtbar, aber dezent */}
+            <div className="flex items-center gap-2 mt-1.5 opacity-40 group-hover:opacity-100 transition-all duration-700">
+              <div className="flex items-center gap-1.5">
+                <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-400 font-bold whitespace-nowrap">
+                  Executive Producer
+                </span>
+                <Clapperboard size={10} className="text-zinc-600 group-hover:text-blue-500 transition-colors" />
+              </div>
+
+              <span className="w-[1px] h-2 bg-white/10" />
+
+              <div className="flex items-center gap-1.5">
+                <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-400 font-bold whitespace-nowrap">
+                  Architect
+                </span>
+                <Compass size={10} className="text-zinc-600 group-hover:text-blue-500 transition-colors" />
+              </div>
+
+              <span className="w-[1px] h-2 bg-white/10" />
+
+              <div className="flex items-center gap-1.5">
+                <span className="text-[10px] uppercase tracking-[0.3em] text-blue-400/70 group-hover:text-blue-400 font-black whitespace-nowrap">
+                  Exnovator®
+                </span>
+                <Scissors size={10} className="text-blue-500/30 group-hover:rotate-12 transition-transform" />
+              </div>
             </div>
           </div>
 
@@ -111,7 +132,7 @@ const App = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.9] mb-8">
+            <h1 className="text-5xl md:text-8xl font-bold text-white tracking-tighter leading-[1.0] mb-8">
               Dem Chaos ein <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 italic font-serif font-light">Lächeln</span> schenken<span className="text-blue-500">.</span>
             </h1>
@@ -126,7 +147,7 @@ const App = () => {
                 Wie ich arbeite
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </a>
-              <div className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold border-l border-white/10 pl-6">
+              <div className="text-[12px] uppercase tracking-[0.3em] text-zinc-500 font-bold border-l border-white/10 pl-6">
                 Sovereign Modern Stack <br /> 
                 <span className="text-blue-400/50">powered by Intelligence & Intuition</span>
               </div>
@@ -136,18 +157,38 @@ const App = () => {
       </section>
 
       <ExnovationSection />
+      
+      <PhilosophySection />
 
-      {/* Philosophy Section */}
-      <section id="vision" className="py-40 relative">
+      {/* Dialog / Kontakt Section */}
+      <section id="kontakt" className="py-32 bg-zinc-900/30 relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-8 text-center relative z-10">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-12 tracking-tight">
-              „Make other people look good.“
-            </h2>
-            <div className="w-24 h-px bg-blue-600 mx-auto mb-12" />
-            <p className="text-2xl text-slate-400 font-serif italic max-w-2xl mx-auto">
-              Vielleicht ist der Sinn des Lebens ja herauszufinden, ab wann aus traurig glücklich wird. Vielleicht sogar zu erleben.
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Lust auf einen echten Dialog?</h2>
+            <p className="text-xl text-slate-400 mb-12 font-light">
+              Keine automatisierten Funnel, kein Bullshit. Einfach ein Gespräch über <br className="hidden md:block" /> 
+              Struktur, Souveränität und wie wir andere zum Glänzen bringen.
             </p>
+            
+            <a 
+              href="mailto:markus@bluhumi.de" 
+              className="inline-flex items-center gap-4 bg-white text-black px-10 py-5 rounded-full font-bold hover:bg-blue-500 hover:text-white transition-all duration-500 group"
+            >
+              Schreiben Sie mir
+              <Mail size={20} className="group-hover:translate-y-[-2px] transition-transform" />
+            </a>
+            
+            <div className="mt-16 flex justify-center gap-8 text-zinc-500 text-[10px] uppercase tracking-[0.4em]">
+              <span className="hover:text-white transition-colors cursor-default">Integrität</span>
+              <span className="text-zinc-800">•</span>
+              <span className="hover:text-white transition-colors cursor-default">Resonanz</span>
+              <span className="text-zinc-800">•</span>
+              <span className="hover:text-white transition-colors cursor-default">Exnovation</span>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -169,8 +210,8 @@ const App = () => {
         </div>
         <div className="max-w-6xl mx-auto px-8 mt-20">
           <div className="h-px w-full bg-gradient-to-r from-transparent via-zinc-800 to-transparent mb-8" />
-          <p className="text-[10px] uppercase tracking-[0.5em] text-zinc-600 text-center">
-            &copy; 2026 Dr.-Ing. Markus Blumenthal // Stratege // Mensch // Engineered in Europe
+          <p className="text-xs uppercase tracking-[0.5em] text-zinc-400 text-center">
+            &copy; 2026 Dr.-Ing. Markus Blumenthal // Stratege // Mensch | Engineered in Europe
           </p>
         </div>
       </footer>
