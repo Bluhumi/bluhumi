@@ -149,7 +149,7 @@ const App = () => {
               </a>
               <div className="text-[12px] uppercase tracking-[0.3em] text-zinc-500 font-bold border-l border-white/10 pl-6">
                 Sovereign Modern Stack <br /> 
-                <span className="text-blue-400/50">powered by Intelligence & Intuition</span>
+                <span className="text-blue-400/50">powered by Intelligence & Intuition & Heart</span>
               </div>
             </div>
           </motion.div>
