@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Mail, ArrowRight, Github, Linkedin, Waypoints, 
-  Heart, Smile, ShieldCheck, Zap, Layout
+  Mail, ArrowRight, Github, Linkedin, Waypoints, Menu, X,
+  Heart, Smile, ShieldCheck, Zap, Layout, Clapperboard, Compass, Scissors
 } from 'lucide-react';
+
+import ExnovationSection from './components/ExnovationSection'; // Importiere die neue Komponente
 
 // Interaktive Komponente für den "Bullshit-Filter"
 const BullshitFilter = ({ bad, good }) => {
@@ -36,6 +38,8 @@ const BullshitFilter = ({ bad, good }) => {
 const App = () => {
   const [scrolled, setScrolled] = useState(false);
 
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
@@ -44,71 +48,94 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-[#050505] text-slate-300 font-sans selection:bg-blue-500/30 overflow-x-hidden">
-      {/* Background Atmosphere */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-600/5 blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-600/5 blur-[120px] rounded-full" />
-      </div>
-
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'bg-black/80 backdrop-blur-xl py-4 border-b border-white/5' : 'bg-transparent py-8'}`}>
+      <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'bg-black/90 backdrop-blur-xl py-4 border-b border-white/5' : 'bg-transparent py-8'}`}>
         <div className="max-w-6xl mx-auto px-8 flex justify-between items-center">
-          <div className="flex flex-col">
-            <span className="text-2xl font-black tracking-tighter text-white">BLUHUMI<span className="text-blue-500">.</span></span>
-            <span className="text-[8px] uppercase tracking-[0.4em] text-zinc-600 font-bold -mt-1 ml-1">Dr.-Ing. // Stratege // Mensch</span>
+          
+          {/* Logo: Jetzt lowercase */}
+          <div className="flex flex-col group cursor-default">
+            <span className="text-2xl font-black tracking-tighter text-white transition-colors duration-500 group-hover:text-blue-500 lowercase">
+              bluhumi<span className="text-blue-500 group-hover:text-white">.</span>
+            </span>
+            
+            {/* Die Titel - Jetzt permanent im Header */}
+            <div className="hidden sm:flex items-center gap-2 mt-1 opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-y-1 group-hover:translate-y-0">
+              <span className="text-[7px] uppercase tracking-[0.3em] text-zinc-500 font-bold">Executive Producer</span>
+              <span className="w-1 h-1 rounded-full bg-zinc-800" />
+              <span className="text-[7px] uppercase tracking-[0.3em] text-zinc-500 font-bold">Architect</span>
+              <span className="w-1 h-1 rounded-full bg-blue-500/50" />
+              <span className="text-[7px] uppercase tracking-[0.3em] text-blue-400 font-bold">Exnovator®</span>
+            </div>
           </div>
+
+          {/* Desktop Menu */}
           <div className="hidden md:flex gap-10 text-[10px] uppercase tracking-[0.3em] font-bold items-center">
-            <a href="#rollen" className="hover:text-blue-400 transition-colors">Struktur</a>
+            <a href="#exnovation" className="hover:text-blue-400 transition-colors">Architektur</a>
             <a href="#vision" className="hover:text-blue-400 transition-colors">Vision</a>
-            <a href="#kontakt" className="px-5 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all">Dialog</a>
+            <a href="#kontakt" className="px-5 py-2 border border-blue-500/20 rounded-full hover:bg-blue-500 hover:text-white transition-all duration-500">Dialog</a>
           </div>
+
+          {/* Hamburger Button für Mobile */}
+          <button 
+            className="md:hidden text-white p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
+
+        {/* Mobile Overlay Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-zinc-900 border-b border-white/10 overflow-hidden"
+            >
+              <div className="flex flex-col p-8 gap-6 text-sm uppercase tracking-widest font-bold">
+                <a href="#exnovation" onClick={() => setMobileMenuOpen(false)}>Architektur</a>
+                <a href="#vision" onClick={() => setMobileMenuOpen(false)}>Vision</a>
+                <a href="#kontakt" onClick={() => setMobileMenuOpen(false)}>Dialog</a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20">
-        <div className="max-w-5xl mx-auto px-8 relative z-10 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold tracking-[0.2em] uppercase mb-8">
-              <Zap size={12} /> Dem Chaos ein Lächeln schenken
-            </div>
-            <h1 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-[0.9]">
-              Executive Producer<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-slate-500">& Architect.</span>
+      <section className="relative pt-40 pb-20 min-h-[80vh] flex items-center">
+        <div className="max-w-6xl mx-auto px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.9] mb-8">
+              Dem Chaos ein <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 italic font-serif font-light">Lächeln</span> schenken<span className="text-blue-500">.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed italic">
-              „Ich gestalte Strukturen, die Komplexität exnovieren und Menschen glänzen lassen.“
+            
+            <p className="text-xl md:text-2xl text-slate-400 max-w-2xl font-light leading-relaxed mb-12">
+              In einer Welt der Überlastung schaffe ich Klarheit durch radikale Vereinfachung. 
+              Mein Antrieb? <span className="text-white font-medium">To make other people look good.</span>
             </p>
 
-            {/* Bullshit Filter Integration */}
-            <div className="flex flex-wrap justify-center gap-3 mt-12 opacity-80">
-              <BullshitFilter bad="BÜROKRATIE" good="EFFIZIENZ" />
-              <BullshitFilter bad="MASKEN" good="AUTHENTIZITÄT" />
-              <BullshitFilter bad="CHAOS" good="STRUKTUR" />
+            <div className="flex flex-wrap gap-6 items-center">
+              <a href="#exnovation" className="group flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full font-bold transition-all">
+                Wie ich arbeite
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+              <div className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold border-l border-white/10 pl-6">
+                Sovereign Modern Stack <br /> 
+                <span className="text-blue-400/50">powered by Intelligence & Intuition</span>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Roles Grid */}
-      <section id="rollen" className="py-32 bg-[#080808] border-y border-white/5 relative z-10">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { icon: Waypoints, title: "Architekt", desc: "Systemische Klarheit für komplexe Herausforderungen." },
-              { icon: ShieldCheck, title: "Robin Hood", desc: "Digitale Souveränität und Werte schützen." },
-              { icon: Smile, title: "Partner", desc: "Empathische Begleitung auf Augenhöhe." },
-              { icon: Layout, title: "Producer", desc: "Vom Konzept bis zur exzellenten Umsetzung." }
-            ].map((role, i) => (
-              <motion.div key={i} whileHover={{ y: -10 }} className="p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all">
-                <role.icon className="text-blue-500 mb-6" size={32} />
-                <h3 className="text-white font-bold text-lg mb-2">{role.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{role.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ExnovationSection />
 
       {/* Philosophy Section */}
       <section id="vision" className="py-40 relative">
