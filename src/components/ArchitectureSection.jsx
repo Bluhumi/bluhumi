@@ -6,7 +6,7 @@ import { Cpu, ShieldCheck, Heart } from 'lucide-react';
 const architectureData = [
   {
     id: '01',
-    title: 'Funktion',
+    title: 'Kompetenz',
     question: 'Funktioniert es?',
     description: 'Wir wandeln blinde Effizienz in integrale Effektivität. Erfolg ist nur dann Erfolg, wenn er das Ganze stärkt.',
     icon: Cpu,
