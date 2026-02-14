@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useCallback, useEffect, useState } from 'react';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 import NavBar from './components/NavBar';
@@ -11,40 +11,29 @@ import Impressum from './components/Impressum';
 import Datenschutz from './components/Datenschutz';
 import Footer from './components/Footer';
 
-// Interaktive Komponente für den "Bullshit-Filter"
-const BullshitFilter = ({ bad, good }) => {
-  const [isExnovated, setIsExnovated] = useState(false);
-  return (
-    <motion.button
-      onClick={() => setIsExnovated(!isExnovated)}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className={`px-6 py-3 rounded-2xl border font-mono text-xs tracking-widest transition-all duration-700 ${
-        isExnovated 
-        ? "border-blue-500/50 bg-blue-500/10 text-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.2)]" 
-        : "border-zinc-800 bg-zinc-900/50 text-zinc-500 hover:border-zinc-700"
-      }`}
-    >
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={isExnovated}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-        >
-          {isExnovated ? good : bad}
-        </motion.span>
-      </AnimatePresence>
-    </motion.button>
-  );
-};
-
 const App = () => {
   // State: null | 'impressum' | 'datenschutz'
   const [activeModal, setActiveModal] = useState(null);
 
   // Hilfsfunktion zum Schließen (Escape-Taste oder Klick)
-  const closeModal = () => setActiveModal(null);
+  const closeModal = useCallback(() => setActiveModal(null), []);
+
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') closeModal();
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [activeModal, closeModal]);
 
   return (
     <div className="min-h-screen bg-[#050505] text-slate-300 font-sans selection:bg-blue-500/30 overflow-x-hidden">   
@@ -67,11 +56,14 @@ const App = () => {
       {/* Modal Overlay System */}
       <AnimatePresence>
         {activeModal && (
-          <motion.div 
+          <Motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl overflow-y-auto"
+            role="dialog"
+            aria-modal="true"
+            aria-label={activeModal === 'impressum' ? 'Impressum' : 'Datenschutz'}
           >
             {/* Schließen-Button (Fixed oben rechts) */}
             <button 
@@ -95,7 +87,7 @@ const App = () => {
             >
               Zurück zur Hauptseite
             </div>
-          </motion.div>
+          </Motion.div>
         )}
       </AnimatePresence>
     </div>

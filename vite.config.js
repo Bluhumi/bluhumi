@@ -4,6 +4,10 @@ import tailwindcss from '@tailwindcss/vite'
 import Sitemap from 'vite-plugin-sitemap'
 
 export default defineConfig({
+  server: {
+    host: true,
+    allowedHosts: ['.trycloudflare.com'],
+  },
   plugins: [
     react(),
     tailwindcss(),

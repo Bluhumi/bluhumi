@@ -43,6 +43,15 @@ const Datenschutz = () => {
             </div>
           </section>
 
+          <section className="border-l border-zinc-800 pl-8">
+            <h2 className="text-white text-xl font-bold mb-6 italic font-serif">5. Schriftarten</h2>
+            <p>
+              Diese Website nutzt keine externen Schriftarten-CDNs (z. B. Google Fonts). Es werden lokal installierte
+              bzw. Systemschriftarten verwendet. Dabei findet keine automatische Datenübermittlung an externe
+              Schriftarten-Anbieter statt.
+            </p>
+          </section>
+
           <div className="pt-12 border-t border-white/5 opacity-40">
             <p className="text-[10px] uppercase tracking-[0.4em]">Quelle: eRecht24</p>
           </div>
