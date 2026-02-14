@@ -2,7 +2,7 @@ import React from 'react';
 import { Mail } from 'lucide-react';
 import { LinkedInIcon } from './Icons'; // Pfad beachten
 
-const Footer = () => {
+const Footer = ({ onOpenImpressum, onOpenDatenschutz}) => { // Prop entgegennehmen
   return (
     <footer id="footer" className="py-24 border-t border-white/5 relative z-10 bg-[#050505]">
       <div className="max-w-6xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
@@ -40,15 +40,40 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="max-w-6xl mx-auto px-8 mt-20">
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-zinc-800 to-transparent mb-8" />
-          <div className="flex flex-col items-center gap-4">
-            <p className="text-[10px] uppercase tracking-[0.5em] text-zinc-500 font-bold text-center">
-              &copy; 2026 Dr.-Ing. Markus Blumenthal // Stratege // Mensch
-            </p>
-            <span className="text-[9px] uppercase tracking-[0.3em] text-blue-500/50 font-medium">
-              Engineered in Germany|Europe
-            </span>
+        <div className="max-w-6xl mx-auto px-8 mt-24 pb-12">
+          {/* Sanfter oberer Abschluss */}
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-zinc-800 to-transparent mb-12" />
+          
+          <div className="flex flex-col md:flex-row justify-between items-center gap-10 text-[9px] uppercase tracking-[0.3em] font-bold text-zinc-500">
+            
+            {/* Block 1: Signature */}
+            <div className="flex items-center gap-3">
+              <span className="text-white tracking-tighter text-sm lowercase">bluhumi<span className="text-blue-500">.</span></span>
+              <span className="text-zinc-800">|</span>
+              <p className="whitespace-nowrap">© 2026 Dr.-Ing. Markus Blumenthal</p>
+            </div>
+
+            {/* Block 2: Quality Anchor */}
+            <div className="flex flex-col items-center gap-1 opacity-60">
+              <span className="text-blue-500/60 tracking-[0.4em]">Engineered in Germany|Europe</span>
+              <span className="text-[7px] text-zinc-700 tracking-[0.6em]">Stratege // Mensch</span>
+            </div>
+
+            {/* Block 3: Legal Links */}
+            <div className="flex items-center gap-8">
+              <button 
+                onClick={(e) => { e.preventDefault(); onOpenImpressum(); }}
+                className="hover:text-white transition-colors"
+              >
+                Impressum
+              </button>
+              <button 
+                onClick={(e) => { e.preventDefault(); onOpenDatenschutz(); }}
+                className="hover:text-white transition-colors"
+              >
+                Datenschutz
+              </button>
+            </div>
           </div>
         </div>
     </footer>
